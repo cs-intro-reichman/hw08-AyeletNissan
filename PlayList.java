@@ -76,7 +76,8 @@ class PlayList {
         String title1 = title.toLowerCase();
         String title2;
         for(int i=0; i<this.size; i++){
-            title2=this.tracks[i].getTitle().toLowerCase();
+            title2=this.tracks[i].getTitle();
+            title2=title2.toLowerCase();
             if(title1.equals(title2)) return i;
         }
         return -1;
