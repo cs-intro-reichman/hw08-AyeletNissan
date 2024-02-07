@@ -74,10 +74,9 @@ class PlayList {
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
         String title1 = title.toLowerCase();
-        String title2;
         for(int i=0; i<this.size; i++){
             if(this.getTrack(i)!=null){
-                title2=this.getTrack(i).getTitle().toLowerCase();
+                String title2=this.getTrack(i).getTitle().toLowerCase();
                 if(title1.equals(title2)) return i;
             }
             
@@ -93,9 +92,8 @@ class PlayList {
      *  returns true. */
     public boolean add(int i, Track track) {
         if(i<0 || i>this.maxSize || this.maxSize==this.size) return false;
-       // if(this.size<i) this.tracks[i]=track;
         else if (i==this.size) {
-            this.tracks[i]=track;
+            this.add(track);
         } else{
             for(int j=this.size; j>i; j--){
                 this.tracks [j]=this.tracks[j-1];
