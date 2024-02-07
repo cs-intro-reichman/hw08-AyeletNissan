@@ -76,9 +76,11 @@ class PlayList {
         String title1 = title.toLowerCase();
         String title2;
         for(int i=0; i<this.size; i++){
-            title2=this.tracks[i].getTitle();
-            title2=title2.toLowerCase();
-            if(title1.equals(title2)) return i;
+            if(this.getTrack(i)!=null){
+                title2=this.tracks[i].getTitle().toLowerCase();
+                if(title1.equals(title2)) return i;
+            }
+            
         }
         return -1;
     }
@@ -92,9 +94,11 @@ class PlayList {
     public boolean add(int i, Track track) {
         if(i<0 || i>this.maxSize || this.maxSize==this.size) return false;
        // if(this.size<i) this.tracks[i]=track;
-        else{
-            for(int j=this.size-1; j>=i; j--){
-                this.tracks [j+1]=this.tracks[j];
+        else if (i==this.size) {
+            this.tracks[i]=track;
+        } else{
+            for(int j=this.size; j>i; j--){
+                this.tracks [j]=this.tracks[j-1];
             }
             this.tracks[i]=track;
         }
