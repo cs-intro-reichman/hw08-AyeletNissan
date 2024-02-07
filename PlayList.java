@@ -46,7 +46,6 @@ class PlayList {
     public String toString() {
         String data="";
         for(int i=0; i<this.size; i++){
-           // data= ;
             data+=tracks[i].toString()+"/n";
         }
         return data;
@@ -190,6 +189,9 @@ class PlayList {
         for(int i=0; i<this.size; i++){
             temp[i]=this.tracks[this.minIndex(i)];
         }
-        this.tracks=temp;
+        //this.tracks=temp;
+        for(int i=0; i<this.size; i++){
+            this.tracks[i]=temp[i];
+        }
     }
 }
