@@ -74,8 +74,9 @@ class PlayList {
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
         String title1 = title.toLowerCase();
+        String title2;
         for(int i=0; i<this.size; i++){
-            String title2=this.tracks[i].getTitle().toLowerCase();
+            title2=this.tracks[i].getTitle().toLowerCase();
             if(title1.equals(title2)) return i;
         }
         return -1;
@@ -88,8 +89,8 @@ class PlayList {
      *  is full, does nothing and returns false. Otherwise, inserts the track and
      *  returns true. */
     public boolean add(int i, Track track) {
-        if(i<0 || i<=this.maxSize) return false;
-        if(this.tracks[i]==null) this.tracks[i]=track;
+        if(i<0 || i<this.maxSize) return false;
+        if(this.size<i) this.tracks[i]=track;
         else{
             for(int j=size-1; j>=i; j++){
                 this.tracks[j+1]=this.tracks[j];
