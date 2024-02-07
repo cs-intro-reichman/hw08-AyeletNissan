@@ -77,7 +77,7 @@ class PlayList {
         String title2;
         for(int i=0; i<this.size; i++){
             if(this.getTrack(i)!=null){
-                title2=this.tracks[i].getTitle().toLowerCase();
+                title2=this.getTrack(i).getTitle().toLowerCase();
                 if(title1.equals(title2)) return i;
             }
             
@@ -101,9 +101,10 @@ class PlayList {
                 this.tracks [j]=this.tracks[j-1];
             }
             this.tracks[i]=track;
+            this.size++;
+            return true;
         }
-        this.size++;
-        return true;
+        return false;
     }
      
     /** Removes the track in the given index from this list.
