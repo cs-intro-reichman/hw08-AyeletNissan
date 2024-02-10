@@ -112,7 +112,7 @@ class PlayList {
         for(int j=i; j<this.size; j++){
             this.tracks[j]=this.tracks[j+1];
         }
-        this.tracks[this.size]=null;
+       // this.tracks[this.size]=null;
         this.size--;
     }
 
@@ -120,24 +120,16 @@ class PlayList {
      *  If such a track is not found, or the list is empty, or the given index
      *  is negative or too big for this list, does nothing. */
     public void remove(String title) {
-        if(this.size==0) return;
-        if(this.indexOf(title) == -1) return;
-        for(int j=this.indexOf(title)+1; j<this.size; j++){
-            this.tracks[j-1]=this.tracks[j];
-        }
-        this.tracks[this.size] = null;
-        this.size--;
+        int i=this.indexOf(title);
+        if(this.size==0 || i==-1 || i>this.size) return;
+        this.remove(i);
 
     }
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
-        if(this.size==0) return;
-        for(int i=1; i<this.size; i++){
-            this.tracks[i-1]=this.tracks[i];
-        }
-        this.tracks[this.size] = null;
-        this.size--;
+        if(this.size<=0) return;
+        this.remove(0);
     }
     
     /** Adds all the tracks in the other list to the end of this list. 
