@@ -44,7 +44,7 @@ class Track {
     private String formattedDuration(int totalSeconds) {
         int min= totalSeconds / 60;
         int sec = totalSeconds % 60;
-        if(sec%10 == 0) return min + ":0" + sec;
+        if(sec< 10) return min + ":0" + sec;
         return min + ":" + sec;
     }
 }
