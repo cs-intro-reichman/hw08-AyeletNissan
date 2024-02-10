@@ -108,9 +108,9 @@ class PlayList {
      *  If the list is empty, or the given index is negative or too big for this list, 
      *  does nothing and returns -1. */
     public void remove(int i) {
-        if(this.size==0 || i<0 || i>this.maxSize) return;
-        for(int j=i+1; j<this.size; j++){
-            this.tracks[j-1]=this.tracks[j];
+        if(this.size==0 || i<0 || i>=this.maxSize) return;
+        for(int j=i; j<this.size; j++){
+            this.tracks[j]=this.tracks[j+1];
         }
         this.tracks[this.size]=null;
         this.size--;
