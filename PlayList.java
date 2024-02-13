@@ -109,11 +109,14 @@ class PlayList {
      *  does nothing and returns -1. */
     public void remove(int i) {
         if(this.size==0 || i<0 || i>=this.maxSize) return;
-        for(int j=i; j<this.size; j++){
-            this.tracks[j]=this.tracks[j+1];
-        }
-       // this.tracks[this.size]=null;
+        else if(i==this.size - 1) this.removeLast();
+        else {
+            for(int j=i; j<this.size; j++){
+                this.tracks[j]=this.tracks[j+1];
+            }
+        this.tracks[this.size]=null;
         this.size--;
+        }
     }
 
     /** Removes the first track that has the given title from this list.
@@ -122,26 +125,27 @@ class PlayList {
     public void remove(String title) {
         int i=this.indexOf(title);
         if(this.size==0 || i==-1 || i>this.size) return;
-        this.remove(i);
+        else this.remove(i);
 
     }
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
         if(this.size<=0) return;
-        this.remove(0);
+        else this.remove(0);
     }
     
     /** Adds all the tracks in the other list to the end of this list. 
      *  If the total size of both lists is too large, does nothing. */
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
-        int sizeo=this.size;
-        if(this.size+other.getSize()>this.maxSize) return;
-        for(int i=sizeo; i<sizeo+other.getSize(); i++){
-            this.tracks[i]=other.getTrack(i-sizeo);
-            this.size++;
+        if(this.size + other.getSize() <= this.maxSize) {
+            while (other.getSize()!=0) {
+                this.add(other.getTrack(0));
+                other.removeFirst();
+            }
         }
+        
     }
 
     /** Returns the index in this list of the track that has the shortest duration,
