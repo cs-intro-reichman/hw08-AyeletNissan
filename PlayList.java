@@ -64,7 +64,7 @@ class PlayList {
     public int totalDuration() {
         int d=0;
         for(int i=0; i<this.size; i++){
-            d+=this.tracks[i].getDuration();
+            d+=getTrack(i).getDuration();
         }
         return d;
     }
@@ -152,11 +152,9 @@ class PlayList {
      */
     private int minIndex(int start) {
         if(start<0 || start> this.size-1) return -1;
-        int min=this.tracks[start].getDuration();
         int minindex=start;
         for(int i=start+1; i<this.size; i++){
-            if(this.tracks[i].getDuration()<min) {
-                min=this.tracks[i].getDuration();
+            if(this.tracks[i].isShorterThan(this.tracks[minindex])) {
                 minindex=i;
             }
         }
